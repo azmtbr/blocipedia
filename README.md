@@ -1,2 +1,0 @@
-# blocipedia
-Wiki collaboration tool
