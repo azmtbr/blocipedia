@@ -1,2 +1,28 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<br>
+<div class="jumbotron">
+  <div class="container">
+  <h1>Blocipedia</h1>
+  <p>Blocipedia is a great place to both get and give information that will make your life better.</p>
+  <p>
+    <% if current_user %>
+        Hello <%= current_user.email %>! <button type="button" class="btn-btn primary"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></button>
+    <% else %>
+        <button type="button" class="btn-btn primary"><%= link_to "Sign In", new_user_session_path %></button> or
+        <button type="button" class="btn-btn primary"><%= link_to "Sign Up", new_user_registration_path %></button>
+    <% end %>
+  </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <p>This is where some really neat and infomative information will go in the near future.</p>
+  </div>
+  <div class="col-md-4">
+    <p>The information here will typically make your brain more attractive. We cannot, however, guarantee that it will help your looks.</p>
+  </div>
+  <div class="col-md-4">
+    <p>It's like a workout for your mind people!</p>
+  </div>
+
+</div>
