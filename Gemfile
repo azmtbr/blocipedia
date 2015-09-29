@@ -21,7 +21,7 @@ gem 'devise'
 # style
 gem 'bootstrap-sass'
 
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 
 

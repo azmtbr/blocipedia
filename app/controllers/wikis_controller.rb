@@ -9,10 +9,12 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
+
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
