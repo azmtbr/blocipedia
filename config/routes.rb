@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+get "welcome/index" 
 
+devise_for :users
+root to: 'welcome#index'
 
 resources :wikis
 
-devise_for :users
-root to: "welcome#index"
-
-resources :users, only: [:show, :update, :index, :create, :new] do
+resources :users, only: [:show, :update, :index, :new] do
     resources :wikis
   end
 end
