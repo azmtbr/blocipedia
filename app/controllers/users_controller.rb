@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @wikis = @user.wikis.visible_to(current_user)
   end
 
   def create
