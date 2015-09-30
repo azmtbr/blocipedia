@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
   gem 'better_errors'
+  gem 'faker'
 end
 
 group :production do

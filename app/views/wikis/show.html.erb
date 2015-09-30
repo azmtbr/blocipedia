@@ -1,5 +1,5 @@
 <h1><%= @wiki.title %></h1>
-<% if policy(@wiki).update? %>
+<% if current_user %>
   <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
   <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger' %>
 <% end %>
