@@ -23,6 +23,8 @@ gem 'bootstrap-sass'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'stripe'
+
 
 
 group :test do
