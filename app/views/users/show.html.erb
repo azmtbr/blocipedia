@@ -3,7 +3,7 @@
     <div class="media">
       <br />
       <div class="media-body">
-        <h2 class="media-heading"><%= @user.name %>'s profile</h2>
+        <h2 class="media-heading"><%= @user.name %>'s profile <small><%= @user.email %></small></h2>
         <small>
           <%= pluralize(@user.wikis.count, 'wiki') %>
         </small>
@@ -20,13 +20,13 @@
 <% unless current_user.premium? %>
 <%= form_tag charges_path do %>
    <h4>Why upgrade to a premium account?</h4>
-   <p>With a premium account, you'll be able to create private wikis.</p>
-   <p>Click the button below to upgrade.</p>
-   <p>It's a piddly $25. So don't worry, just click!</p>
+    <p>With a premium account, you'll be able to create private wikis.</p>
+    <p>Click the button below to upgrade.</p>
+    <p>It's a piddly $25. So don't worry, just click!</p>
    <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
 <% end %>
 <% else %>
 <h4>Want to downgrade?</h4>
 <p>We don't understand why you would want to, but ok.</p>
-<%= link_to "Downgrade", downgrade_path, class: 'btn btn-default' %>
+<%= link_to "Downgrade", downgrade_path, class: 'btn btn-default', data: { confirm: "Are you sure? It's a pretty good deal." } %>
 <% end %>

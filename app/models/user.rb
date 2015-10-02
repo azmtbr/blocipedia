@@ -12,4 +12,13 @@ class User < ActiveRecord::Base
   def enum_role
     self.role ||= :standard
   end
+
+  after_save do
+    if role == 'standard'
+      wikis.where(private: true).each do |w|
+        w.private = false
+        w.save
+      end
+    end
+  end
 end

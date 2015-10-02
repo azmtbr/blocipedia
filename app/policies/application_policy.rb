@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    record.private != true || (user.present? && ((user.role == 'admin') || record.user == user || record.users.include?(user)))
   end
 
   def create?

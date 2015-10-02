@@ -5,16 +5,17 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def new
     @wiki = Wiki.new
-
+    authorize @wiki
   end
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
-
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
@@ -55,10 +56,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    if current_user.premium?
-      params.require(:wiki).permit([:title, :body])
-    else
-      params.require(:wiki).permit(:title, :body)
-    end
+      params.require(:wiki).permit(:title, :body, :private)
   end
 end
