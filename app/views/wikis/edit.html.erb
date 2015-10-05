@@ -10,10 +10,11 @@
 
     <h5><%= user.name %></h5>
     <div class="media">
-      <% if current_user %>
-      <%= link_to "Remove", wiki_collaborator_path(@wiki, @wiki.user_id), method: :delete, class: 'btn btn-default' %>
+
+      <% if @wiki.users.include? user %>
+        <%= link_to "Remove", wiki_collaborator_path(@wiki, @wiki.user_id), method: :delete, class: 'btn btn-default' %>
       <% else %>
-      <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
+        <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
       <% end %>
     </div>
   <% end %>
