@@ -1,13 +1,7 @@
 class WikiPolicy < ApplicationPolicy
 
 
-  # def permitted_attributes
-  #   if user.admin? || user.owner_of?(wiki)
-  #     [:title, :body]
-  #   else
-  #
-  #   end
-  # end
+
 
   def index?
     true
@@ -18,7 +12,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    record.private != true || (user.present? && ((user.role == 'admin') || record.user == user))
+    record.private != true || (user.present? && ((user.role == 'admin') || record.user == user || record.users.include?(user)))
   end
 
   def update?
@@ -44,7 +38,7 @@ class WikiPolicy < ApplicationPolicy
        elsif user.present? && user.role == 'premium'
          all_wikis = scope.all
          all_wikis.each do |wiki|
-           if wiki.private != true || wiki.user == user
+           if wiki.private != true  || wiki.user == user || wiki.users.include?(user)
              wikis << wiki
            end
          end
@@ -52,24 +46,12 @@ class WikiPolicy < ApplicationPolicy
          all_wikis = scope.all
          wikis = []
          all_wikis.each do |wiki|
-           if wiki.private != true 
+           if wiki.private != true || wiki.users.include?(user)
              wikis << wiki
            end
          end
        end
        wikis
      end
-
-    # def resolve
-    #   if user
-    #     if user.admin? || user.premium?
-    #       scope.all
-    #     else
-    #       scope.where(private: false)
-    #     end
-    #   else
-    #     scope.where(private: false)
-    #   end
-    # end
   end
  end

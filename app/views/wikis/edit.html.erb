@@ -2,3 +2,22 @@
   <div class="col-md-8">
     <%= render partial: 'form', locals: { wiki: @wiki } %>
   </div>
+<<% if current_user.role == 'premium' %>
+<h3>Collaborators</h3>
+
+<div class="media">
+  <% @users.each do |user| %>
+
+    <h5><%= user.name %></h5>
+    <div class="media">
+      <% if current_user %>
+      <%= link_to "Remove", wiki_collaborator_path(@wiki, @wiki.user_id), method: :delete, class: 'btn btn-default' %>
+      <% else %>
+      <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+<% end %>
