@@ -4,4 +4,8 @@ class Wiki < ActiveRecord::Base
   has_many :users, through: :collaborators
 
   scope :visible_to, -> (user) { user && ((user.role == 'premium') || (user.role == 'admin')) ? all : where((private == false) || (private == nil))  }
+
+  def collaborator_for(user)
+    collaborators.where(user: user).first
+  end
 end

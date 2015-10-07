@@ -14,7 +14,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-    @collaborator = Collaborator.find(params[:id])
+    @collaborator = Collaborator.find(params[:user_id])
     if @collaborator.destroy
       flash[:notice] = "Wiki was sucessfully updated."
       redirect_to edit_wiki_path(@wiki)
